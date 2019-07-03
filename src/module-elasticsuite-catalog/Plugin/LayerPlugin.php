@@ -13,8 +13,6 @@
  */
 namespace Smile\ElasticsuiteCatalog\Plugin;
 
-use Magento\CatalogInventory\Model\Plugin\Layer;
-
 /**
  * Replace is in stock native filter on layer.
  *
@@ -22,7 +20,7 @@ use Magento\CatalogInventory\Model\Plugin\Layer;
  * @package   Smile\ElasticsuiteCatalog
  * @author    Aurelien FOUCRET <aurelien.foucret@smile.fr>
  */
-class LayerPlugin extends \Magento\CatalogInventory\Model\Plugin\Layer
+class LayerPlugin
 {
     /**
      * @var \Magento\Search\Model\QueryFactory
@@ -40,29 +38,23 @@ class LayerPlugin extends \Magento\CatalogInventory\Model\Plugin\Layer
      * @var \Smile\ElasticsuiteCore\Helper\Mapping
      */
     private $mappingHelper;
-
+    
     /**
      * Constructor.
      *
-     * @param \Magento\CatalogInventory\Helper\Stock             $stockHelper   Stock helper.
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig   Configuration.
      * @param \Magento\Search\Model\QueryFactory                 $queryFactory  Search query factory.
      * @param \Magento\Catalog\Model\Config                      $catalogConfig Catalog Configuration.
      * @param \Smile\ElasticsuiteCore\Helper\Mapping             $mappingHelper Mapping Helper.
      */
     public function __construct(
-        \Magento\CatalogInventory\Helper\Stock $stockHelper,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Search\Model\QueryFactory $queryFactory,
         \Magento\Catalog\Model\Config $catalogConfig,
         \Smile\ElasticsuiteCore\Helper\Mapping $mappingHelper
     ) {
-        parent::__construct($stockHelper, $scopeConfig);
         $this->queryFactory  = $queryFactory;
         $this->catalogConfig = $catalogConfig;
         $this->mappingHelper = $mappingHelper;
     }
-
 
     /**
      * {@inheritDoc}
